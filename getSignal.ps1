@@ -6,11 +6,12 @@ $ProgressPreference = 'SilentlyContinue'
 # Find Player log
 Write-Output "Finding game..."
 $logContent = Get-Content -Path "$([Environment]::GetFolderPath('ApplicationData'))\..\LocalLow\miHoYo\ZenlessZoneZero\Player.log"
-
+Write-Output "Log Content: $logContent"
 # Find Game Folder
 foreach ($line in $logContent) {
-    if ($line -ne $null -and $line.StartsWith("Loading player data from")) {
-        $gamePath = $line -replace "Loading player data from |\/data.unity3d", ""
+    if ($line -ne $null -and $line.StartsWith("[Subsystems] Discovering subsystems at path ")) {
+        Write-Output "Game Path: $line"
+        $gamePath = $line -replace ""[Subsystems] Discovering subsystems at path "", "" -replace "UnitySubsystems", ""
         break
     }
 }
