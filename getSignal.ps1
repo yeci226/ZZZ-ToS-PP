@@ -11,7 +11,7 @@ Write-Output "Log Content: $logContent"
 foreach ($line in $logContent) {
     if ($line -ne $null -and $line.StartsWith("[Subsystems] Discovering subsystems at path ")) {
         Write-Output "Game Path: $line"
-        $gamePath = $line -replace ""[Subsystems] Discovering subsystems at path "", "" -replace "UnitySubsystems", ""
+        $gamePath = $line -replace "[Subsystems] Discovering subsystems at path ", "" -replace "UnitySubsystems", ""
         break
     }
 }
