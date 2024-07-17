@@ -14,7 +14,7 @@ foreach ($line in $logContent) {
         break
     }
 }
-
+Write-Output "Game Path: $gamePath"
 if ($gamePath -ne $null) {
 	# Get Current Game Version
 	$version = Get-ChildItem -Path "$gamePath/webCaches" -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
